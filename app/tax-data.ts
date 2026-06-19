@@ -1,0 +1,122 @@
+export const products = [
+  {
+    name: "Brita, rachão e pedra britada",
+    ncm: "2517.10.00",
+    confidence: "alta",
+    keywords: ["brita", "rachão", "rachao", "pedra britada", "agregado"],
+  },
+  {
+    name: "Granito em blocos",
+    ncm: "2516.12.00",
+    confidence: "alta",
+    keywords: ["granito", "bloco", "blocos"],
+  },
+  {
+    name: "Chapas de granito serradas ou trabalhadas",
+    ncm: "6802.23.00",
+    confidence: "média",
+    keywords: ["chapa", "chapas", "mármore", "marmore", "ornamental"],
+  },
+  {
+    name: "Calcário agrícola",
+    ncm: "2521.00.00",
+    confidence: "média",
+    keywords: ["calcário", "calcario", "corretivo"],
+  },
+  {
+    name: "Feldspato",
+    ncm: "2529.10.00",
+    confidence: "média",
+    keywords: ["feldspato", "resíduo mineral", "residuo mineral"],
+  },
+  {
+    name: "Soja em grãos",
+    ncm: "1201.90.00",
+    confidence: "alta",
+    keywords: ["soja", "grão de soja", "grao de soja"],
+  },
+  {
+    name: "Milho em grãos",
+    ncm: "1005.90.10",
+    confidence: "alta",
+    keywords: ["milho"],
+  },
+  {
+    name: "Aveia em grãos",
+    ncm: "1004.90.00",
+    confidence: "média",
+    keywords: ["aveia"],
+  },
+  {
+    name: "Trigo em grãos",
+    ncm: "1001.99.00",
+    confidence: "média",
+    keywords: ["trigo"],
+  },
+];
+
+export const taxRules: Record<string, any> = {
+  "2517.10.00": {
+    pisCofinsLucroReal: { pis: "0% ou 1,65% — validar destinação", cofins: "0% ou 7,60% — validar destinação" },
+    pisCofinsDefault: { pis: "Regra do regime", cofins: "Regra do regime" },
+    ipi: "Geralmente não tributado/NT — validar TIPI",
+    cfem: "1% sobre receita líquida mineral",
+    warning: "Para brita/agregados pode existir alíquota zero de PIS/COFINS conforme legislação federal aplicável, mas depende da operação e destinação. Validar com contador antes de emitir NF-e.",
+  },
+  "2516.12.00": {
+    pisCofinsLucroReal: { pis: "1,65%", cofins: "7,60%" },
+    pisCofinsDefault: { pis: "Regra do regime", cofins: "Regra do regime" },
+    ipi: "Geralmente NT — validar TIPI",
+    cfem: "1% rochas ornamentais",
+    warning: "Blocos de granito destinados à exportação tendem a ter não incidência de ICMS e alíquota zero de PIS/COFINS, mantendo análise de CFEM.",
+  },
+  "6802.23.00": {
+    pisCofinsLucroReal: { pis: "1,65%", cofins: "7,60%" },
+    pisCofinsDefault: { pis: "Regra do regime", cofins: "Regra do regime" },
+    ipi: "Validar TIPI conforme acabamento",
+    cfem: "Analisar se ainda integra receita mineral/beneficiamento",
+    warning: "Chapas podem mudar classificação conforme acabamento, polimento ou grau de industrialização.",
+  },
+  "2521.00.00": {
+    pisCofinsLucroReal: { pis: "1,65%", cofins: "7,60%" },
+    pisCofinsDefault: { pis: "Regra do regime", cofins: "Regra do regime" },
+    ipi: "Validar TIPI",
+    cfem: "2% em calcário, salvo regra específica aplicável",
+    warning: "Calcário agrícola pode ter tratamentos específicos conforme finalidade, inscrição do cliente e legislação estadual.",
+  },
+  "2529.10.00": {
+    pisCofinsLucroReal: { pis: "1,65%", cofins: "7,60%" },
+    pisCofinsDefault: { pis: "Regra do regime", cofins: "Regra do regime" },
+    ipi: "Validar TIPI",
+    cfem: "Validar alíquota ANM do mineral",
+    warning: "Resíduos ou subprodutos minerais exigem atenção na caracterização do produto e benefício fiscal aplicável.",
+  },
+  "1201.90.00": {
+    pisCofinsLucroReal: { pis: "Pode ter suspensão/alíquota zero conforme cadeia agro", cofins: "Pode ter suspensão/alíquota zero conforme cadeia agro" },
+    pisCofinsDefault: { pis: "Regra do regime", cofins: "Regra do regime" },
+    ipi: "NT",
+    cfem: "Não aplicável",
+    warning: "Commodities agrícolas possuem regras específicas de ICMS e PIS/COFINS conforme destinatário, finalidade e UF.",
+  },
+  "1005.90.10": {
+    pisCofinsLucroReal: { pis: "Pode ter suspensão/alíquota zero conforme cadeia agro", cofins: "Pode ter suspensão/alíquota zero conforme cadeia agro" },
+    pisCofinsDefault: { pis: "Regra do regime", cofins: "Regra do regime" },
+    ipi: "NT",
+    cfem: "Não aplicável",
+    warning: "Validar diferimentos e benefícios agro no RICMS do estado de origem e destino.",
+  },
+  "1004.90.00": {
+    pisCofinsLucroReal: { pis: "Pode ter tratamento específico no agro", cofins: "Pode ter tratamento específico no agro" },
+    pisCofinsDefault: { pis: "Regra do regime", cofins: "Regra do regime" },
+    ipi: "NT",
+    cfem: "Não aplicável",
+    warning: "Aveia exige validação da operação com produtor, cerealista, indústria ou consumidor final.",
+  },
+  "1001.99.00": {
+    pisCofinsLucroReal: { pis: "Pode ter tratamento específico no agro", cofins: "Pode ter tratamento específico no agro" },
+    pisCofinsDefault: { pis: "Regra do regime", cofins: "Regra do regime" },
+    ipi: "NT",
+    cfem: "Não aplicável",
+    warning: "Trigo pode ter regras estaduais e federais específicas conforme destinação industrial ou comercial.",
+  },
+};
